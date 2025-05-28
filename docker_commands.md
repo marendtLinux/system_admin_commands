@@ -63,6 +63,7 @@ docker run -d -v <volumename>:/var/lib/mysql <imagename>
 ```
 
 create container with volume in local directory, mounted on /var/lib/mysql
+
 **ATTENTION:** path to local directoy must start with a '/' under linux,
 otherwise it is interpreted as an named volume
 ```bash
@@ -162,6 +163,7 @@ docker volume prune
 ```
 
 delete all inactive containers and images not used by other images
+
 **ATTENTION:** Use with caution
 ```bash
 docker system prune 
@@ -169,6 +171,7 @@ docker system prune
 
 delete all inactive containers and images not used by other images
 in addition all volumes and images that are not used by containers
+
 **ATTENTION:** Use with caution
 ```bash
 docker system prune -a --volumes
