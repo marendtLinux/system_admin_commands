@@ -48,7 +48,7 @@ SHOW FULL PROCESSLIST;
 show version of sql-server
 ~~~~sql
 SELECT version();
-~~~~sql
+~~~~
 
 
 show location of data directory
