@@ -29,7 +29,7 @@ DROP DATABASE <database_name>
 ~~~~
 
 
-# Connections
+### Connections
 
 show active connections
 ~~~~sql
@@ -133,3 +133,62 @@ shows the number of rows of a table
 ~~~~sql
 SELECT count(*) FROM <table>;
 ~~~~
+
+
+### Users
+
+#### MySQL
+
+shows all users with the specified host they are allowed to connect from
+~~~~sql
+SELECT User, Host FROM mysql.user;
+~~~~
+
+shows the current user
+~~~~sql
+SELECT CURRENT_USER();
+~~~~
+
+create a user with a password
+~~~~sql
+CREATE USER '<username>'@'<host>' IDENTIFIED BY 'password';
+~~~~
+
+delete a user
+~~~~sql
+DROP USER '<username>'@'<host>';
+~~~~
+
+show privileges for a user
+~~~~sql
+SHOW GRANTS FOR '<user>'@'<host>';
+~~~~
+
+grant all privilegs on all database on the server, thus creating another superuser
+~~~~sql
+GRANT ALL PRIVILEGES ON *.* TO '<user>'@'<host>';
+~~~~
+
+grants all privileges for the specified database on all tables to a user 
+~~~~sql
+GRANT ALL PRIVILEGES ON <database>.* TO '<user>'@'<host>';
+~~~~
+
+grants all privileges for the specified table of the database to a user 
+~~~~sql
+GRANT ALL PRIVILEGES ON <database>.<table> TO '<user>'@'<host>';
+~~~~
+
+grants the user the select option on the whole database and also the privilege, to pass that privilege to other users
+~~~~sql
+GRANT SELECT, GRANT OPTION ON <database>.* TO <user>@'%';
+~~~~
+
+revoke all privileges from a user to the database 
+~~~~sql
+REVOKE ALL PRIVILEGES ON <database>.* FROM '<user>'@'<localhost>';
+~~~~
+
+
+
+
