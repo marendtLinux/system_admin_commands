@@ -58,3 +58,66 @@ Show patch status
 ```bash
 zypper patch-check
 ```
+
+
+### APT (package manager for Debian, Ubuntu)
+
+refresh meta data of packages
+```bash
+apt update
+```
+
+install package
+```bash
+apt install <package_name>
+```
+
+upgrades all packages
+```bash
+apt upgrade
+```
+
+upgrades all packages and removes packages, if necessary
+```bash
+apt full-upgrade
+```
+
+remove package
+```bash
+apt remove <package_name>
+```
+
+remove all packages, that are no longer needed
+```bash
+apt autoremove
+```
+
+delete packages from the cache
+```bash
+apt autoclean
+```
+
+list all available packages
+```bash
+apt list
+```
+
+list all installed packages
+```bash
+apt list --installed
+```
+
+search for a package
+```bash
+apt search <name>
+```
+
+show information for a package
+```bash
+apt show <package_name>
+```
+
+equivalent to apt full-upgrade
+```bash
+apt-get dist-upgrade
+```
