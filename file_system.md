@@ -17,7 +17,6 @@ sda      8:0    0 238,5G  0 disk
 
 Output explanation:
 
-
 **NAME** sda is the name of the first hard drive, sdb would be the second and so forth
 the partitions of a hard drive a then numbered: sda1, sda2
 
@@ -56,9 +55,40 @@ show information on the file system with better overview
 duf
 ```
 
+show information like UUID to a device file, here for example /dev/sda2
+```bash
+blkid /dev/sda2
+```
 
+### /etc/fstab and /etc/mtab
 
+show contents of fstab and mtab, columnt -t option can be used for better readability
+```bash
+cat /etc/fstab
+cat /etc/mtab | column -t
+```
 
+- fstab and mtab use the same syntax
+- fstab contains all mounted filesystem at boot time
+- mtab contains all currently mounted filesystem, hence it can include filesystems mounted after boot time
+
+#### Syntax of fstab and mtab 
+
+- each line describes a file system
+- a line contains six columns. They contain the following information:
+
+1. device name (can also be the uuid)
+2. mount point, on which the device is mounted on
+3. type of file system (e.g. ext4, btrfs)
+4. mount-Options (e.g. defaults: no options selected, ro:read-only, noexec:no programm execution allowed)
+5. contains information for the program dump and is ignored by the linux os otherwise
+6. order, in which the file systems are being checked when booting. 1 often stands for the
+system partition and 0 for all else, which means they are not checked. 
+
+example output from fstab:
+```bash
+/dev/disk/by-uuid/573ebbaa-4466-4caa-9a92-7e22432456b5 / ext4 defaults 0 1
+```
 
 
 
