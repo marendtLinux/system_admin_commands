@@ -49,6 +49,10 @@ show information on the file system
 ```bash
 df -h
 ```
+show used types of the file system
+```bash
+df -T
+```
 
 show information on the file system with better overview
 ```bash
@@ -90,16 +94,43 @@ example output from fstab:
 /dev/disk/by-uuid/573ebbaa-4466-4caa-9a92-7e22432456b5 / ext4 defaults 0 1
 ```
 
+### formatting a usb stick
 
+list usb device with lsblk, usb device has value 1 at column RM (removable)
+```bash
+lsblk
+```
 
+In this examble the usb device is sdb and has two partitions: sdb1 and sdb2.
 
+The column MOUNTPOINTS from lsblk shows, that sdb2 is mounted. Before formatting, the 
+partition needs to be unmounted:
 
+```bash
+umount /dev/sdb2
+```
 
+delete usb drive and create a new partition table of typ gpt
+```bash
+parted /dev/sdb mklabel gpt
+```
 
+now we edit the partition table by creating a primary
+partition with fat32 and define the starting and ending point
+at 1mib. the fat32 is not actually created, is just a 
+information in the partition table
+```bash
+parted /dev/sdb 'mkpart primary fat32 1mib -1mib'
+```
 
+now we create the actual file system with the name USB_DATA
+```bash
+mkfs.vfat -F 32 -n USB_DATA /dev/sdb1
+```
 
-
-
-
-
+at last we can mount the new file system, /media/data has to be
+and existing directory
+```bash
+mount /dev/sdb1 /media/data
+```
 
